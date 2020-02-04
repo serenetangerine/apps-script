@@ -37,7 +37,25 @@ function search_next(query) {
   // instead of searching column 4 we want to search the grid starting at
   // column 1 and going to sheet.getLastColumn();
   var found = 0;
-  Browser.msgBox(sheets);
+  for each (var sheet in sheets) {
+    if (found == 0) {
+      ss.toast('Searching ' + sheet.getName());
+
+      // get how many rows and columns are in the sheet
+      var rows = sheet.getLastRow();
+      var columns = sheet.getLastColumn();
+
+      //gets values in the sheet and then tests with query
+      var range = sheet.getRange(1, 1, rows, columns);
+      var values = range.getValues();
+      for each (var value in values) {
+        if (value == query) {
+          ss.setActiveSheet(sheet);
+          found = 1;
+        }
+      }
+    }
+  }
 }
 
 // eventually need to add ability to find next
@@ -73,7 +91,7 @@ function search(query) {
     }
   }
   if (found == 0) {
-    var message = 'Computer not found.';
+    var message = 'Not found.';
     ss.toast(message)
     Browser.msgBox(message);
   }
