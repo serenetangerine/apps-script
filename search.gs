@@ -6,6 +6,7 @@
 // TODO:
 // generalize script for arbitrary search
 // find next instance
+// automatically make result the active cell/sheet
 
 // global variables
 var ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -16,19 +17,27 @@ function onOpen() {
   // creates menu to easily run script(s) from the spreadsheet
   ui.createMenu('Scripts')
     .addItem('Search', 'prompt')
+    .addItem('Find Next', 'search_next')
     .addToUi();
 }
 
 function prompt() {
   // generate prompt for search text
   var query = ui.prompt(
-    'Enter computer name: ',
+    'Enter search string: ',
     ui.ButtonSet.OK_CANCEL);
   var button = query.getSelectedButton();
   var queryText = query.getResponseText();
   if (button == ui.Button.OK) {
     search(queryText);
   }
+}
+
+function search_next(query) {
+  // instead of searching column 4 we want to search the grid starting at
+  // column 1 and going to sheet.getLastColumn();
+  var found = 0;
+  Browser.msgBox(sheets);
 }
 
 // eventually need to add ability to find next
