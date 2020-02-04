@@ -8,6 +8,7 @@ var ss = SpreadsheetApp.getActiveSpreadsheet();
 var sheets = ss.getSheets();
 var ui = SpreadsheetApp.getUi();
 
+// creates menu to run scripts
 function onOpen() {
   // creates menu to easily run script(s) from the spreadsheet
   ui.createMenu('Sort')
@@ -39,5 +40,22 @@ function alpha() {
 
 // sort sheets reverse alphabetically
 function ahpla() {
+  // get the sheet names as an array
+  var sheetNames = [];
+  for (var i = 0; i < sheets.length; i++) {
+    sheetNames.push(sheets[i].getName());
+  }
 
+  // sort the array
+  sheetNames.sort();
+  sheetNames.reverse();
+
+  // reorder the sheets
+  for (var i = 0; i < sheets.length; i++) {
+    // only moving of active sheet is supported so we will cycle through the sorted
+    // sheet names and make them active
+    // then set the position based on the index i
+    ss.setActiveSheet(ss.getSheetByName(sheetNames[i]));
+    ss.moveActiveSheet(i + 1);
+  }
 }
