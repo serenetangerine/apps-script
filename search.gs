@@ -1,7 +1,7 @@
-// searches all sheets for a user input string
+// function: searches all sheets for a user input string
 // author: Matthew Hall
-// date: 04-Feb-20
-// modified:
+// created: 04-Feb-20
+// last modified: 04-Feb-20 Matthew Hall
 
 // TODO:
 // generalize script for arbitrary search
