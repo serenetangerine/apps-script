@@ -55,6 +55,11 @@ function search_next(query) {
       }
     }
   }
+  if (found == 0) {
+    var message = 'Not found.';
+    ss.toast(message)
+    Browser.msgBox(message);
+  }
 }
 
 // eventually need to add ability to find next
