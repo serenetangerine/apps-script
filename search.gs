@@ -17,7 +17,6 @@ function onOpen() {
   // creates menu to easily run script(s) from the spreadsheet
   ui.createMenu('Scripts')
     .addItem('Search', 'prompt')
-    .addItem('Find Next', 'search_next')
     .addToUi();
 }
 
@@ -29,7 +28,7 @@ function prompt() {
   var button = query.getSelectedButton();
   var queryText = query.getResponseText();
   if (button == ui.Button.OK) {
-    search(queryText);
+    search_next(queryText);
   }
 }
 
